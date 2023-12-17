@@ -112,16 +112,12 @@ console.log(passwordChars)
 
 let characterArray = characterMix.flat();
 
-for (let i = passwordChars.length; i <= lengthNum; i++) {
-partTwo = (getRandom(characterArray));
-}
-
-console.log(partTwo)
-
-// Need to get random characters from the array and push them to the password array. (Length given by user, minus the length of the current password array (which will contain 1 of each of the special characters they wanted.)
-
 // Function to generate password with user input
 function generatePassword() {
+  for (let i = passwordChars.length; i < lengthNum; i++) {
+    partTwo = (getRandom(characterArray));
+    passwordChars.push(partTwo)}
+    return passwordChars.join("")
 }
 
 // Get references to the #generate element
