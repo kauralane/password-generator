@@ -5,9 +5,9 @@ The user is able to determine the length of password and which types of characte
 
 The user then presses the 'generate password' button and their password will appear in the box. 
 
-[Deployed application]()
+[Deployed application](https://kauralane.github.io/password-generator/)
 
-[Screenshot]()
+[Screenshot](./assets/screenshot.png)
 
 ## Installation
 None.
@@ -16,8 +16,7 @@ None.
 Give a numerical answer for how long you would like your password. Then press 'confirm' (yes) or 'cancel' (no) to indicate whether you want uppercase, lowercase, special, and/or numerical characters. Then press the 'generate password' button to create your password.
 
 ## Credits
-W3 schools website
-mdn web docs website
+W3 schools website & the mdn web docs website
 
 ## License
 Licensed under the MIT License.
