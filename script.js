@@ -11,7 +11,7 @@
 // Confirm(Would you like special characters?)
 
 // need to store each answer in a variable
-// !number in prompt 1 needs to be length of password
+// number in prompt 1 needs to be length of password
 // MAYBE - if confirm = true, add that array to a new array. Then, you will have one array containing all the different characters that can be used. Select characters at random from this new array, based on the 'length' input. (But how to ensure that at least one type of each character is taken? Something to do with index numbers?) 
 
 // Perhaps - nested array. Then you can select to choose x characters from each array subset?
@@ -42,43 +42,35 @@ var lowercaseCharacters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','
 var uppercaseCharacters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
 // Function to prompt user for password options
-function getPasswordOptions() {
+function getPasswordLength() {
   lengthString = prompt(`How long would you like your password to be? Please choose between 8 and 128 characters, inclusive.`)
   lengthNum = parseInt(lengthString);
-// need conditional here: if prompt input is less than 8 or more than 128, return out of the function. 
 
-  lowercaseConfirm = confirm(`Do you want lowercase characters?`)
+  if (lengthString < 8 || lengthString > 128) {
+    alert(`You must select a length betwen 8 and 128, inclusive. Please try again.`);
+    getPasswordLength()
+    // each time you do this wrong, when you then do it right, it asks you the prompts as many times as you got this wrong
+  }}
 
-  uppercaseConfirm = confirm(`Do you want uppercase characters?`)
+  function getPasswordOptions() {
+  lowercaseConfirm = confirm(`Do you want lowercase characters?`);
 
-  numericConfirm = confirm(`Do you want numeric characters?`)
+  uppercaseConfirm = confirm(`Do you want uppercase characters?`);
 
-  specialConfirm = confirm(`Do you want special characters?`)
+  numericConfirm = confirm(`Do you want numeric characters?`);
 
-  return userResponses = [lengthNum, lowercaseConfirm, uppercaseConfirm, numericConfirm]
-}
+  specialConfirm = confirm(`Do you want special characters?`);
 
+  if (lowercaseConfirm === false && uppercaseConfirm === false && numericConfirm === false && specialConfirm === false) {
+    alert(`You must select at least one character type, please try again.`);
+    getPasswordOptions()
+  }
+
+  return lengthNum, lowercaseConfirm, uppercaseConfirm, numericConfirm 
+  }
+
+getPasswordLength()
 getPasswordOptions()
-
-// start process again if user doesn't select at least one character type
-if (lowercaseConfirm === false && uppercaseConfirm === false && numericConfirm === false && specialConfirm === false) {
-  alert(`You must select at least one character type.`);
-  getPasswordOptions();
-}
-
-// For creating a random string from a character set. INCOMPLETE.
-// const num = lengthNum
-// const randomString = (len = 1) => {
-//   const charSet = uppercaseCharacters;
-//   // this charSet needs to reflect what type of characters the user has chosen. Maybe a nested array?
-//   let randomString = '';
-//   for (let i = 0; i < len; i++) {
-//     let randomPos = Math.floor(Math.random() * charSet.length);
-//     randomString += charSet.slice(randomPos, randomPos + 1);
-//   };
-//   return randomString;
-// };
-// console.log(randomString(num));
 
 // Function for getting a random element from an array
 function getRandom(arr) {
@@ -88,7 +80,7 @@ function getRandom(arr) {
 const characterMix = [];
 const passwordChars = [];
 
-// Process for generating random character for each of the selected sets.
+// Process for generating random character for each of the sets selected by the user. One character of each type is pushed into the 'passwordChars' array. The remaining number of characters is chosen from the 'characterMix' array, which is all the selected character set arrays, joined into one.
 if (lowercaseConfirm === true) {
   randomLower = (getRandom(lowercaseCharacters));
 passwordChars.push(randomLower)
@@ -108,8 +100,6 @@ characterMix.push(lowercaseCharacters)
 }
 
 // Generate one large (flat) array made up of the types of characters selected by the user. This will be used to choose the remaining number of characters.
-console.log(passwordChars)
-
 let characterArray = characterMix.flat();
 
 // Function to generate password with user input
