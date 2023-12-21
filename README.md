@@ -7,7 +7,8 @@ The user then presses the 'generate password' button and their password will app
 
 [Deployed application](https://kauralane.github.io/password-generator/)
 
-[Screenshot](./assets/screenshot.png)
+## Screenshot:
+![screenshot](https://github.com/kauralane/password-generator/assets/148717413/3380f850-6585-4b69-ae76-c7465920eebd)
 
 ## Installation
 None.
